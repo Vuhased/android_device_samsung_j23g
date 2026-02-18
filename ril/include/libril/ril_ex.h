@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
+struct ril_event;
 #ifndef RIL_EX_H_INCLUDED
 #define RIL_EX_H_INCLUDED
 

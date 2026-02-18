@@ -5,26 +5,34 @@ ifeq ($(BOARD_PROVIDES_LIBRIL),true)
 LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
+# Убрали обратный слэш после последнего активного файла
 LOCAL_SRC_FILES:= \
     ril.cpp \
     ril_event.cpp \
-    RilSocket.cpp \
-    RilSapSocket.cpp \
+    RilSocket.cpp
+
+# Файлы RilSocket.cpp и RilSapSocket.cpp исключены из сборки
 
 LOCAL_SHARED_LIBRARIES := \
     liblog \
     libutils \
     libbinder \
     libcutils \
-    libhardware_legacy \
-    librilutils \
+    libhardware_legacy
 
 LOCAL_STATIC_LIBRARIES := \
-    libprotobuf-c-nano-enable_malloc \
+    libprotobuf-c-nano-enable_malloc
 
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/include
-LOCAL_C_INCLUDES += external/nanopb-c
-LOCAL_C_INCLUDES += $(LOCAL_PATH)/../include
+# Добавили пути к протобафам и системному RIL, чтобы не было ошибок "file not found"
+LOCAL_C_INCLUDES += \
+    $(LOCAL_PATH)/include \
+    $(LOCAL_PATH)/../include \
+    external/nanopb-c \
+    hardware/ril/include \
+    hardware/ril/librilutils \
+    $(TOP)/hardware/ril/librilutils/proto
+LOCAL_CFLAGS += -DSAP_NOT_USED
+
 LOCAL_EXPORT_C_INCLUDE_DIRS := $(LOCAL_PATH)/../include
 
 LOCAL_MODULE:= libril
@@ -32,7 +40,6 @@ LOCAL_CLANG := true
 LOCAL_SANITIZE := integer
 
 include $(BUILD_SHARED_LIBRARY)
-
 
 # For RdoServD which needs a static library
 # =========================================
@@ -48,7 +55,10 @@ LOCAL_STATIC_LIBRARIES := \
     librilutils_static \
     libprotobuf-c-nano-enable_malloc
 
-LOCAL_CFLAGS :=
+LOCAL_C_INCLUDES += \
+    $(LOCAL_PATH)/include \
+    $(LOCAL_PATH)/../include \
+    hardware/ril/include
 
 LOCAL_MODULE:= libril_static
 

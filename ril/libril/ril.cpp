@@ -17,6 +17,8 @@
 
 #define LOG_TAG "RILC"
 
+#include <sys/time.h>
+#include <RilSocket.h>
 #include <hardware_legacy/power.h>
 #include <telephony/ril.h>
 #include <telephony/ril_cdma_sms.h>
@@ -46,7 +48,7 @@
 #include <assert.h>
 #include <netinet/in.h>
 #include <cutils/properties.h>
-#include <RilSapSocket.h>
+// #include <RilSapSocket.h>
 
 extern "C" void
 RIL_onRequestComplete(RIL_Token t, RIL_Errno e, void *response, size_t responselen);
@@ -5763,9 +5765,9 @@ RIL_register (const RIL_RadioFunctions *callbacks, RIL_SOCKET_ID socket_id) {
 }
 
 extern "C" void
-RIL_register_socket (RIL_RadioFunctions *(*Init)(const struct RIL_Env *, int, char **), RIL_SOCKET_TYPE socketType, 
+RIL_register_socket (RIL_RadioFunctions *(*Init)(const struct RIL_Env *, int, char **), RIL_SOCKET_TYPE socketType,
                      int argc, char **argv, RIL_SOCKET_ID socket_id) {
-
+    /* SAP полностью отключен для исправления ошибок компиляции
     RIL_RadioFunctions* UimFuncs = NULL;
 
     if(Init) {
@@ -5791,6 +5793,7 @@ RIL_register_socket (RIL_RadioFunctions *(*Init)(const struct RIL_Env *, int, ch
             default:;
         }
     }
+    */
 }
 
 // Check and remove RequestInfo if its a response and not just ack sent back
