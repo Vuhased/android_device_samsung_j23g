@@ -1,0 +1,37 @@
+[
+    {
+        "repository": "Vuhased/android_device_samsung_scx30g2-common",
+        "target_path": "device/samsung/scx30g2-common",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_device_samsung_scx35-common",
+        "target_path": "device/samsung/scx35-common",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_device_samsung_sprd-common",
+        "target_path": "device/samsung/sprd-common",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_vendor_samsung_j23g",
+        "target_path": "vendor/samsung/j23g",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_vendor_samsung_scx30g2-common",
+        "target_path": "vendor/samsung/scx30g2-common",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_kernel_samsung_j23g",
+        "target_path": "kernel/samsung/j23g",
+        "branch": "lineage-16.0"
+    },
+    {
+        "repository": "Vuhased/android_hardware_sprd",
+        "target_path": "hardware/sprd",
+        "branch": "lineage-15.1"
+    }
+]
